@@ -1,0 +1,50 @@
+.about-container {
+    max-width: 800px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+}
+
+.about-content {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.about-content h2 {
+    color: #fe8402;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.about-section {
+    margin-bottom: 2rem;
+}
+
+.about-section h3 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.about-section p {
+    line-height: 1.6;
+    color: #555;
+}
+
+.about-section ul {
+    list-style-type: none;
+    padding-left: 1rem;
+}
+
+.about-section ul li {
+    margin: 0.5rem 0;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.about-section ul li:before {
+    content: "•";
+    color: #fe8402;
+    position: absolute;
+    left: 0;
+}

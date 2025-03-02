@@ -1,0 +1,50 @@
+.profile-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.profile-header {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.user-info {
+    margin-top: 1rem;
+}
+
+.user-info p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
+}
+
+.user-questions {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.question-item {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1rem;
+}
+
+.question-item:last-child {
+    border-bottom: none;
+}
+
+.question-item h4 {
+    color: #fe8402;
+    margin-bottom: 0.5rem;
+}
+
+.question-item small {
+    color: #666;
+    display: block;
+    margin-top: 0.5rem;
+}

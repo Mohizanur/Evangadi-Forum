@@ -1,0 +1,153 @@
+.answer-page {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.question-details {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.question-details h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.answers-list {
+    margin: 2rem 0;
+}
+
+.answer-item {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.answer-form-container {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.answer-form-container textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 1rem;
+    margin: 1rem 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.answer-form-container button {
+    background-color: #fe8402;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.answer-form-container button:hover {
+    background-color: #e67600;
+}
+.error-message {
+    background: #ffe6e6;
+    color: #d63031;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 1rem;
+}
+
+.loading {
+    text-align: center;
+    padding: 2rem;
+    color: #666;
+}
+
+.answer-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    color: #666;
+}
+
+.answer-form-container textarea:focus {
+    outline: none;
+    border-color: #fe8402;
+    box-shadow: 0 0 0 2px rgba(254, 132, 2, 0.1);
+}
+
+.answer-item p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+.answer-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.question-section {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.question-section h2 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.answers-section {
+    margin: 20px 0;
+}
+
+.answer-item {
+    background: white;
+    padding: 15px;
+    border: 1px solid #e1e4e8;
+    border-radius: 4px;
+    margin: 10px 0;
+}
+
+.answer-form {
+    margin-top: 20px;
+}
+
+.answer-form textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.answer-form button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.answer-form button:hover {
+    background: #0056b3;
+}
+
+.loading {
+    text-align: center;
+    padding: 20px;
+    font-size: 18px;
+}
