@@ -1,7 +1,7 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const port = 5500;
+const port = process.env.PORT || 5500;
 const userRoutes = require("./routes/userRoute");
 const questionsRoutes = require("./routes/questionRoute");
 const dbConnection = require("./db/dbConfig");
@@ -12,7 +12,7 @@ const answerRoutes = require("./routes/answerRoute");
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://evangadi-forum-monasir.netlify.app",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
@@ -33,14 +33,12 @@ app.get("/api/health", (req, res) => {
 // Start server and connect to database
 async function start() {
   try {
-    // Test database connection
     const [result] = await dbConnection.execute("SELECT 1");
     console.log("Database connected successfully!");
 
-    // Start server
     app.listen(port, () => {
       console.log(`Server is running on port ${port}`);
-      console.log(`API endpoints ready at http://localhost:${port}/api`);
+      console.log(`API endpoints ready`);
     });
   } catch (error) {
     console.log("Database connection error:", error.stack);
