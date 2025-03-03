@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosBase = axios.create({
-  baseURL: "http://localhost:5500/api", // Add back /api prefix
+  baseURL: "https://evangadi-forum-backend-xemm.onrender.com/api",
   headers: {
     "Content-Type": "application/json",
   },
