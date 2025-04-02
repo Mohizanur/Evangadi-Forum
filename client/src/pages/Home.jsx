@@ -19,12 +19,14 @@ function Home() {
   const token = localStorage.getItem("token");
   const [currentPage, setCurrentPage] = useState(1);
   const questionsPerPage = 5;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchQuestions();
   }, []);
 
   const fetchQuestions = async () => {
+    setLoading(true);
     try {
       const response = await axios.get("/questions", {
         headers: { Authorization: `Bearer ${token}` },
@@ -36,6 +38,8 @@ function Home() {
     } catch (error) {
       console.error("Fetch error:", error);
       setMessage("Failed to fetch questions. Please try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -54,7 +58,6 @@ function Home() {
   const handleSubmitQuestion = async (e) => {
     e.preventDefault();
     if (!validateQuestion()) return;
-
     setIsSubmitting(true);
     try {
       const response = await axios.post(
@@ -70,7 +73,6 @@ function Home() {
           },
         }
       );
-
       if (response.data.success) {
         setShowAskQuestion(false);
         setNewQuestion({ title: "", description: "" });
@@ -90,6 +92,7 @@ function Home() {
       question.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       question.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
   const indexOfLastQuestion = currentPage * questionsPerPage;
   const indexOfFirstQuestion = indexOfLastQuestion - questionsPerPage;
   const currentQuestions = filteredQuestions.slice(
@@ -99,100 +102,119 @@ function Home() {
   const totalPages = Math.ceil(filteredQuestions.length / questionsPerPage);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  function handleAskQuestion() {
+    setShowAskQuestion(true);
+  }
+
   return (
-    <div className="home-container">
-      <div className="questions-header">
-        <h2>Questions</h2>
-        <button
-          onClick={() => setShowAskQuestion(true)}
-          className="ask-button"
-          disabled={isSubmitting}
-        >
-          Ask Question
-        </button>
-      </div>
-
-      <div className="search-container">
-        <input
-          type="text"
-          placeholder="Search questions..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input"
-        />
-      </div>
-
-      {message && <div className="message">{message}</div>}
-
-      {showAskQuestion && (
-        <div className="ask-question-form">
-          <h3>Ask a Question</h3>
-          <form onSubmit={handleSubmitQuestion}>
-            <input
-              type="text"
-              placeholder="Question Title (minimum 15 characters)"
-              value={newQuestion.title}
-              onChange={(e) =>
-                setNewQuestion({ ...newQuestion, title: e.target.value })
-              }
-              required
-              minLength={15}
-            />
-            <textarea
-              placeholder="Question Description (minimum 30 characters)"
-              value={newQuestion.description}
-              onChange={(e) =>
-                setNewQuestion({ ...newQuestion, description: e.target.value })
-              }
-              required
-              minLength={30}
-            />
-            <div className="form-buttons">
-              <button type="submit" disabled={isSubmitting}>
-                {isSubmitting ? "Posting..." : "Submit Question"}
-              </button>
-              <button
-                type="button"
-                onClick={() => {
-                  setShowAskQuestion(false);
-                  setMessage("");
-                }}
-                className="cancel-button"
-                disabled={isSubmitting}
-              >
-                Cancel
-              </button>
-            </div>
-          </form>
-        </div>
-      )}
-
-      <div className="questions-list">
-        {currentQuestions.map((question) => (
-          <div key={question.questionid} className="question-card">
-            <h3>
-              <Link to={`/answer/${question.questionid}`}>
-                {question.title}
-              </Link>
-            </h3>
-            <p>{question.description}</p>
-            <div className="question-meta">
-              <span>Asked by: {question.user_name}</span>
-            </div>
+    <div className="container">
+      <div className="homp">
+        <div className="row hed mb-5">
+          <div className="col-md-6 d-flex justify-content-center justify-content-md-start">
+            <button
+              onClick={handleAskQuestion}
+              className="qb"
+              disabled={isSubmitting}
+            >
+              Ask Question
+            </button>
           </div>
-        ))}
+          <div className="col-md-6 d-flex justify-content-center justify-content-md-end">
+            <h4 className="wel">Welcome: {user?.username}</h4>
+          </div>
+        </div>
+        <h3 className="ns">Questions</h3>
+
+        <div className="search-container">
+          <input
+            type="text"
+            placeholder="Search questions..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="search-input"
+          />
+        </div>
+
+        {message && <div className="message">{message}</div>}
+
+        {showAskQuestion && (
+          <div className="ask-question-form">
+            <h3>Ask a Question</h3>
+            <form onSubmit={handleSubmitQuestion}>
+              <input
+                type="text"
+                placeholder="Question Title (minimum 15 characters)"
+                value={newQuestion.title}
+                onChange={(e) =>
+                  setNewQuestion({ ...newQuestion, title: e.target.value })
+                }
+                required
+                minLength={15}
+              />
+              <textarea
+                placeholder="Question Description (minimum 30 characters)"
+                value={newQuestion.description}
+                onChange={(e) =>
+                  setNewQuestion({
+                    ...newQuestion,
+                    description: e.target.value,
+                  })
+                }
+                required
+                minLength={30}
+              />
+              <div className="form-buttons">
+                <button type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? "Posting..." : "Submit Question"}
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setShowAskQuestion(false);
+                    setMessage("");
+                  }}
+                  className="cancel-button"
+                  disabled={isSubmitting}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
 
-      <div className="pagination">
-        {Array.from({ length: totalPages }, (_, i) => (
-          <button
-            key={i + 1}
-            onClick={() => paginate(i + 1)}
-            className={`page-button ${currentPage === i + 1 ? "active" : ""}`}
-          >
-            {i + 1}
-          </button>
-        ))}
+      <div className="load">
+        {loading ? (
+          <div className="loading">Loading...</div>
+        ) : (
+          currentQuestions.map((question) => (
+            <div key={question.questionid} className="question-item">
+              <Link
+                to={`/answer/${question.questionid}`}
+                className="question-link"
+              >
+                <h3>{question.title}</h3>
+                <p className="question-description">{question.description}</p>
+                <div className="question-meta">
+                  <span>Asked by: {question.username}</span>
+                </div>
+              </Link>
+            </div>
+          ))
+        )}
+
+        <div className="pagination">
+          {Array.from({ length: totalPages }, (_, i) => (
+            <button
+              key={i + 1}
+              onClick={() => paginate(i + 1)}
+              className={`page-button ${currentPage === i + 1 ? "active" : ""}`}
+            >
+              {i + 1}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

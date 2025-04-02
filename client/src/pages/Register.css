@@ -1,14 +1,125 @@
-.error {
-    color: #dc3545;
-    font-size: 0.875rem;
-    margin-top: 0.25rem;
-    margin-bottom: 0.5rem;
+/* Styling for the Register container */
+.login__container {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 80px auto;
+  color: #000;
 }
 
-.form-group {
-    margin-bottom: 1rem;
+/* Title styling */
+.login__container h4 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #000;
 }
 
-input.error-input {
-    border-color: #dc3545;
+/* Paragraph styling */
+.login__container p {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Container for First Name and Last Name inputs */
+.input-group {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+/* Individual input styling */
+form input {
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background: #fff;
+  color: #000;
+  box-sizing: border-box;
+}
+
+/* Specific styling for First Name and Last Name inputs */
+.input-group .first-name,
+.input-group .last-name {
+  flex: 1;
+  margin: 0;
+}
+
+/* Invalid input styling */
+.invalid {
+  border: 1px solid #e01e5a !important;
+  background: #fce9ef !important;
+}
+
+/* Text danger styling */
+.text-danger {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  display: block;
+}
+
+/* Button styling */
+.login__signInButton {
+  width: 100%;
+  padding: 10px;
+  background-color: #516cf0;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.login__signInButton:hover {
+  background-color: #FE8402;
+}
+
+/* Link styling */
+.create {
+  color: #516cf0;
+  text-decoration: none;
+  margin-left: 5px;
+}
+
+.create:hover {
+  text-decoration: underline;
+}
+
+/* Hide class for password visibility icon */
+.hide {
+  margin-right: 0;
+}
+
+/* Container for the password toggle icon */
+.signfas {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+/* Icon within the .signfas container */
+.signfas i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #000;
+  margin-top: -35px;
 }

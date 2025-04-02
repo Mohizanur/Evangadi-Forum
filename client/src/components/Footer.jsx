@@ -1,53 +1,66 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import logo from "../Images/evangadi-logo.png";
 import "./Footer.css";
+import "@fortawesome/fontawesome-free/css/all.min.css"; // Import Font Awesome
 
 function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="footer-section">
-          <h3>Useful Link</h3>
-          <ul>
+    <div className="footer ">
+      <div className="container some row">
+        <div className="footer_logo tp col-sm-12 col-md-4">
+          <img src={logo} alt="Evangadi Logo" />
+          <div className="row ic">
+            <Link
+              className="col"
+              to="https://www.facebook.com/evangaditech"
+              target="_blank"
+            >
+              <i className="fab fa-facebook"></i>
+            </Link>
+            <Link className="col" to="">
+              <i className="fab fa-youtube"></i>
+            </Link>
+            <Link
+              className="col"
+              to="https://www.instagram.com/evangaditech/"
+              target="_blank"
+            >
+              <i className="fab fa-instagram"></i>
+            </Link>
+          </div>
+        </div>
+        <div className="col-sm-12 col-md-4 tp">
+          <h5 className="title">Useful Links</h5>
+          <ul className="st">
             <li>
-              <a href="https://www.evangadi.com/explained/">How it works</a>
+              <Link to="/how-it-works">How it Works</Link>
             </li>
             <li>
-              <a href="https://www.evangadi.com/legal/terms/">
+              <Link to="https://www.evangadi.com/legal/terms/" target="_blank">
                 Terms of Service
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="https://www.evangadi.com/legal/privacy/">
-                Privacy policy
-              </a>
+              <Link
+                to="https://www.evangadi.com/legal/privacy/"
+                target="_blank"
+              >
+                Privacy Policy
+              </Link>
             </li>
           </ul>
         </div>
-
-        <div className="footer-section">
-          <h3>Contact Info</h3>
-          <ul>
+        <div className="col-sm-12 col-md-4 tp ">
+          <h5 className="title">Contact Info</h5>
+          <ul className="net">
             <li>Evangadi Networks</li>
             <li>support@evangadi.com</li>
             <li>+1-202-386-2702</li>
           </ul>
         </div>
-
-        <div className="footer-section">
-          <h3>Social Links</h3>
-          <div className="social-links">
-            <a href="https://www.facebook.com/evangaditech">
-              <i className="fab fa-facebook"></i>
-            </a>
-            <a href="https://www.instagram.com/evangaditech">
-              <i className="fab fa-instagram"></i>
-            </a>
-            <a href="https://www.youtube.com/c/evangaditech">
-              <i className="fab fa-youtube"></i>
-            </a>
-          </div>
-        </div>
       </div>
-    </footer>
+    </div>
   );
 }
 

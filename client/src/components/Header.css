@@ -1,51 +1,57 @@
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.black {
+  color: black !important;
 }
 
-.header-left .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fe8402;
-    text-decoration: none;
+.link:hover {
+  color: black;
+  text-decoration: none;
 }
 
-.header-right {
-    display: flex;
-    gap: 2rem;
-    align-items: center;
+.btn {
+  background-color: #516cf0 !important;
+  width: 120px;
+  height: 40px;
+  border: none !important;
 }
 
-.header-right a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
+.btn:hover {
+  background-color: #fe8402 !important;
+  border: none !important;
 }
 
-.header-right button {
-    background-color: #fe8402;
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: 500;
+.navbar {
+  height: 70px;
+  z-index: 1000;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: white;
 }
 
-.header-right button:hover {
-    background-color: #e67600;
+.navbar-logo {
+  height: 30px;
 }
 
-@media (max-width: 768px) {
-    .header {
-        padding: 1rem;
-    }
-    
-    .header-right {
-        gap: 1rem;
-    }
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-nav .nav-link {
+  color: #333;
+  font-weight: 500;
+  margin-right: 20px;
+}
+
+.navbar-collapse {
+  background-color: white;
+  padding: 10px 0;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn {
+    margin-top: 10px;
+  }
 }

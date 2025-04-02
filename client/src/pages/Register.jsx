@@ -14,11 +14,15 @@ function Register() {
   const passwordDom = useRef();
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
-
     const usernameValue = usernameDom.current.value;
     const firstValue = firstnameDom.current.value;
     const lastValue = lastnameDom.current.value;
@@ -47,7 +51,6 @@ function Register() {
         email: emailValue,
         password: passValue,
       });
-
       navigate("/login");
     } catch (error) {
       const errorMessage = error.response?.data?.msg || "Something went wrong!";
@@ -57,71 +60,111 @@ function Register() {
     }
   }
 
-return (
-  <div className="auth-container">
-    <h2 className="auth-title">Create Account</h2>
-    {isLoading && <Spinner />}
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
-        <label>Username</label>
-        <input
-          ref={usernameDom}
-          type="text"
-          placeholder="Choose a username"
-          className={errors.username ? "error-input" : ""}
-        />
-        {errors.username && <div className="error">{errors.username}</div>}
-      </div>
-      <div className="form-group">
-        <label>First Name</label>
-        <input
-          ref={firstnameDom}
-          type="text"
-          placeholder="Enter your first name"
-          className={errors.firstname ? "error-input" : ""}
-        />
-        {errors.firstname && <div className="error">{errors.firstname}</div>}
-      </div>
-      <div className="form-group">
-        <label>Last Name</label>
-        <input
-          ref={lastnameDom}
-          type="text"
-          placeholder="Enter your last name"
-          className={errors.lastname ? "error-input" : ""}
-        />
-        {errors.lastname && <div className="error">{errors.lastname}</div>}
-      </div>
-      <div className="form-group">
-        <label>Email</label>
+  return (
+    <div className="login__container container col-sm-12 col-md">
+      <h4>Join the network</h4>
+      <p>
+        Already have an account?
+        <Link to="/login" className="create">
+          Sign in
+        </Link>
+      </p>
+
+      {isLoading && <Spinner />}
+
+      <form onSubmit={handleSubmit}>
         <input
           ref={emailDom}
           type="email"
-          placeholder="Enter your email"
-          className={errors.email ? "error-input" : ""}
+          className={errors.email ? "invalid" : ""}
+          placeholder="Email"
+          style={{ padding: "10px", marginBottom: "10px" }}
         />
-        {errors.email && <div className="error">{errors.email}</div>}
-      </div>
-      <div className="form-group">
-        <label>Password</label>
+        {errors.email && <small className="text-danger">{errors.email}</small>}
+
+        <div className="input-group">
+          <input
+            ref={firstnameDom}
+            className={`first-name ${errors.firstname ? "invalid" : ""}`}
+            type="text"
+            placeholder="First Name"
+            style={{ padding: "10px" }}
+          />
+          <input
+            ref={lastnameDom}
+            className={`last-name ${errors.lastname ? "invalid" : ""}`}
+            type="text"
+            placeholder="Last Name"
+            style={{ padding: "10px" }}
+          />
+        </div>
+        {errors.firstname && (
+          <small className="text-danger">{errors.firstname}</small>
+        )}
+        {errors.lastname && (
+          <small className="text-danger">{errors.lastname}</small>
+        )}
+
+        <input
+          ref={usernameDom}
+          type="text"
+          className={errors.username ? "invalid" : ""}
+          placeholder="Username"
+          style={{ padding: "10px", marginTop: "10px", marginBottom: "10px" }}
+        />
+        {errors.username && (
+          <small className="text-danger">{errors.username}</small>
+        )}
+
         <input
           ref={passwordDom}
-          type="password"
-          placeholder="Create a password"
-          className={errors.password ? "error-input" : ""}
+          type={passwordVisible ? "text" : "password"}
+          className={`hide ${errors.password ? "invalid" : ""}`}
+          placeholder="Password"
+          style={{ padding: "10px" }}
         />
-        {errors.password && <div className="error">{errors.password}</div>}
-      </div>
-      {errors.submit && <div className="error">{errors.submit}</div>}
-      <button type="submit" className="submit-button">
-        Register
-      </button>
-    </form>
-    <button onClick={() => navigate("/login")} className="auth-link">
-      Already have an account? Login
-    </button>
-  </div>
-);
+        <div className="signfas">
+          <i onClick={togglePasswordVisibility}>
+            {passwordVisible ? (
+              <i className="fas fa-eye" />
+            ) : (
+              <i className="fas fa-eye-slash" />
+            )}
+          </i>
+        </div>
+        {errors.password && (
+          <small className="text-danger">{errors.password}</small>
+        )}
+
+        <p>
+          I agree to the{" "}
+          <a
+            className="create"
+            href="https://www.evangadi.com/legal/privacy/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            privacy policy
+          </a>{" "}
+          and{" "}
+          <a
+            className="create"
+            href="https://www.evangadi.com/legal/terms/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            terms of service.
+          </a>
+        </p>
+
+        {errors.submit && <div className="text-danger">{errors.submit}</div>}
+
+        <button type="submit" className="login__signInButton">
+          Agree and Join
+        </button>
+      </form>
+    </div>
+  );
 }
 
 export default Register;

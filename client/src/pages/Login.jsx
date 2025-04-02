@@ -8,20 +8,23 @@ import { jwtDecode } from "jwt-decode";
 import "./Login.css";
 
 function Login() {
-  const { setuser } = useContext(AppState); // Match the context setter name
+  const { setuser } = useContext(AppState);
   const emailDom = useRef();
   const passwordDom = useRef();
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
   async function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
     const emailValue = emailDom.current.value;
     const passValue = passwordDom.current.value;
-
-    console.log("Attempting login with:", { email: emailValue });
 
     const validationErrors = validateLogin(emailValue, passValue);
     if (Object.keys(validationErrors).length > 0) {
@@ -36,30 +39,23 @@ function Login() {
         password: passValue,
       });
 
-      console.log("Login response:", response.data);
-
       if (response.data.token) {
         localStorage.setItem("token", response.data.token);
-        // Set token in axios defaults for subsequent requests
         axiosBase.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${response.data.token}`;
-
         const decoded = jwtDecode(response.data.token);
         setuser({
           username: decoded.username,
           userid: decoded.userid,
           email: decoded.email,
         });
-
-        // Clear any existing errors
         setErrors({});
         navigate("/");
       } else {
         throw new Error("No token received");
       }
     } catch (error) {
-      console.log("Login error:", error.response?.data);
       setErrors({
         submit:
           error.response?.data?.msg ||
@@ -69,39 +65,53 @@ function Login() {
       setIsLoading(false);
     }
   }
+
   return (
-    <div className="auth-container">
-      <h2 className="auth-title">Welcome Back</h2>
+    <div className="login__container col-md">
+      <h4>Login to your account</h4>
+      <p>
+        Don't have an account?
+        <Link to="/register" className="create">
+          Create a new account
+        </Link>
+      </p>
+
       {isLoading && <Spinner />}
+
       <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            ref={emailDom}
-            type="email"
-            placeholder="Enter your email"
-            className={errors.email ? "error-input" : ""}
-          />
-          {errors.email && <div className="error">{errors.email}</div>}
-        </div>
-        <div className="form-group">
-          <label>Password</label>
+        <input
+          ref={emailDom}
+          type="email"
+          className={errors.email ? "invalid" : ""}
+          placeholder="Email"
+          style={{ padding: "10px", marginBottom: "10px" }}
+        />
+        {errors.email && <div className="error">{errors.email}</div>}
+
+        <div className="signinfas">
           <input
             ref={passwordDom}
-            type="password"
-            placeholder="Enter your password"
-            className={errors.password ? "error-input" : ""}
+            type={passwordVisible ? "text" : "password"}
+            className={`hide ${errors.password ? "invalid" : ""}`}
+            placeholder="Password"
+            style={{ padding: "10px" }}
           />
-          {errors.password && <div className="error">{errors.password}</div>}
+          <i onClick={togglePasswordVisibility}>
+            {passwordVisible ? (
+              <i className="fas fa-eye" />
+            ) : (
+              <i className="fas fa-eye-slash" />
+            )}
+          </i>
         </div>
+        {errors.password && <div className="error">{errors.password}</div>}
+
         {errors.submit && <div className="error">{errors.submit}</div>}
-        <button type="submit" className="submit-button">
-          Login
+
+        <button type="submit" className="login__signInButton">
+          Submit
         </button>
       </form>
-      <button onClick={() => navigate("/register")} className="auth-link">
-        Need an account? Register
-      </button>
     </div>
   );
 }
