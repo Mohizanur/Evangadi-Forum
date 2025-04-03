@@ -130,14 +130,17 @@ function Register() {
                 {errors.username && (
                   <small className="text-danger">{errors.username}</small>
                 )}
-                <input
-                  ref={passwordDom}
-                  type={passwordVisible ? "text" : "password"}
-                  className={`hide ${errors.password ? "invalid" : ""}`}
-                  placeholder="Password"
-                  style={{ padding: "10px" }}
-                />
-                <div className="signfas">
+
+                <div className="signinfas">
+                  {" "}
+                  {/* Changed from "signfas" to "signinfas" */}
+                  <input
+                    ref={passwordDom}
+                    type={passwordVisible ? "text" : "password"}
+                    className={`hide ${errors.password ? "invalid" : ""}`}
+                    placeholder="Password"
+                    style={{ padding: "10px" }}
+                  />
                   <i onClick={togglePasswordVisibility}>
                     {passwordVisible ? (
                       <i className="fas fa-eye" />

@@ -218,3 +218,25 @@ form input {
   position: relative;
   z-index: 1; /* Lower than the header's z-index of 1000 */
 }
+/* Add to Login.css */
+.create {
+  color: #FE8402 !important; /* Change from #516CF0 to #FE8402 */
+  text-decoration: none;
+  margin-left: 5px;
+  transition: color 0.3s ease;
+}
+
+.create:hover {
+  text-decoration: underline;
+  color: #e67300 !important; /* Darker orange on hover */
+}
+
+/* For the privacy policy and terms links in Register.jsx */
+p a.create {
+  color: #FE8402 !important;
+}
+
+p a.create:hover {
+  color: #e67300 !important;
+  text-decoration: underline;
+}
