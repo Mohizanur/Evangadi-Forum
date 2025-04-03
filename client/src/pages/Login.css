@@ -1,10 +1,43 @@
+/* Combined styles for login and register pages */
+.auth-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 80px 0;
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-md-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding: 0;
+}
+
 .login__container {
-  max-width: 400px;
-  margin: 80px auto;
-  padding: 20px;
+  max-width: 100%;
+  margin: 0;
+  padding: 40px;
   background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .login__container h4 {
@@ -50,6 +83,14 @@ form input {
   margin-bottom: 10px;
 }
 
+.text-danger {
+  color: #dc3545;
+  font-size: 14px;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  display: block;
+}
+
 .login__signInButton {
   width: 100%;
   padding: 12px;
@@ -91,4 +132,56 @@ form input {
   font-size: 1.2em;
   cursor: pointer;
   color: #000;
+}
+
+.signfas {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.signfas i {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #000;
+  margin-top: -35px;
+}
+
+.input-group {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+
+.input-group .first-name,
+.input-group .last-name {
+  flex: 1;
+  margin: 0;
+}
+
+.about-column {
+  background-color: #f8f9fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .col-md-6 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+  
+  .auth-container {
+    max-width: 90%;
+  }
+  
+  .about-column {
+    order: -1;
+    padding: 30px 0;
+  }
 }

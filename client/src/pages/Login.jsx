@@ -5,6 +5,8 @@ import axiosBase from "../axiosConfig";
 import { validateLogin } from "../utils/validation";
 import Spinner from "../components/Spinner";
 import { jwtDecode } from "jwt-decode";
+import About from "./About";
+import backgroundImage from "../Images/background.svg";
 import "./Login.css";
 
 function Login() {
@@ -44,12 +46,15 @@ function Login() {
         axiosBase.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${response.data.token}`;
-        const decoded = jwtDecode(response.data.token);
-        setuser({
-          username: decoded.username,
-          userid: decoded.userid,
-          email: decoded.email,
+
+        // Get user data
+        const { data } = await axiosBase.get("/users/check", {
+          headers: {
+            Authorization: `Bearer ${response.data.token}`,
+          },
         });
+
+        setuser(data.user);
         setErrors({});
         navigate("/");
       } else {
@@ -67,51 +72,62 @@ function Login() {
   }
 
   return (
-    <div className="login__container col-md">
-      <h4>Login to your account</h4>
-      <p>
-        Don't have an account?
-        <Link to="/register" className="create">
-          Create a new account
-        </Link>
-      </p>
-
-      {isLoading && <Spinner />}
-
-      <form onSubmit={handleSubmit}>
-        <input
-          ref={emailDom}
-          type="email"
-          className={errors.email ? "invalid" : ""}
-          placeholder="Email"
-          style={{ padding: "10px", marginBottom: "10px" }}
-        />
-        {errors.email && <div className="error">{errors.email}</div>}
-
-        <div className="signinfas">
-          <input
-            ref={passwordDom}
-            type={passwordVisible ? "text" : "password"}
-            className={`hide ${errors.password ? "invalid" : ""}`}
-            placeholder="Password"
-            style={{ padding: "10px" }}
-          />
-          <i onClick={togglePasswordVisibility}>
-            {passwordVisible ? (
-              <i className="fas fa-eye" />
-            ) : (
-              <i className="fas fa-eye-slash" />
-            )}
-          </i>
+    <div
+      className="auth-page"
+      style={{ backgroundImage: `url(${backgroundImage})` }}
+    >
+      <div className="auth-container">
+        <div className="row">
+          <div className="col-md-6">
+            <div className="login__container">
+              <h4>Login to your account</h4>
+              <p>
+                Don't have an account?
+                <Link to="/register" className="create">
+                  Create a new account
+                </Link>
+              </p>
+              {isLoading && <Spinner />}
+              <form onSubmit={handleSubmit}>
+                <input
+                  ref={emailDom}
+                  type="email"
+                  className={errors.email ? "invalid" : ""}
+                  placeholder="Email"
+                  style={{ padding: "10px", marginBottom: "10px" }}
+                />
+                {errors.email && <div className="error">{errors.email}</div>}
+                <div className="signinfas">
+                  <input
+                    ref={passwordDom}
+                    type={passwordVisible ? "text" : "password"}
+                    className={`hide ${errors.password ? "invalid" : ""}`}
+                    placeholder="Password"
+                    style={{ padding: "10px" }}
+                  />
+                  <i onClick={togglePasswordVisibility}>
+                    {passwordVisible ? (
+                      <i className="fas fa-eye" />
+                    ) : (
+                      <i className="fas fa-eye-slash" />
+                    )}
+                  </i>
+                </div>
+                {errors.password && (
+                  <div className="error">{errors.password}</div>
+                )}
+                {errors.submit && <div className="error">{errors.submit}</div>}
+                <button type="submit" className="login__signInButton">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+          <div className="col-md-6 about-column">
+            <About />
+          </div>
         </div>
-        {errors.password && <div className="error">{errors.password}</div>}
-
-        {errors.submit && <div className="error">{errors.submit}</div>}
-
-        <button type="submit" className="login__signInButton">
-          Submit
-        </button>
-      </form>
+      </div>
     </div>
   );
 }
