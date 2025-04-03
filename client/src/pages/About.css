@@ -1,10 +1,12 @@
+/* In About.css, update these styles */
 .about-section {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   padding: 40px;
-  background-color: #f8f9fa;
+  background-color: transparent; /* Changed from #f8f9fa to transparent */
+  border: none; /* Explicitly remove any border */
 }
 
 .about-section.embedded {
@@ -15,6 +17,7 @@
 .about-content {
   max-width: 500px;
   text-align: left;
+  background-color: transparent; /* Ensure content background is also transparent */
 }
 
 .about-title {

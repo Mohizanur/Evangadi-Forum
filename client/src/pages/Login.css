@@ -94,7 +94,7 @@ form input {
 .login__signInButton {
   width: 100%;
   padding: 12px;
-  background-color: #516CF0;
+  background-color: #516cf0;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -106,11 +106,11 @@ form input {
 }
 
 .login__signInButton:hover {
-  background-color: #FE8402;
+  background-color: #fe8402;
 }
 
 .create {
-  color: #516CF0;
+  color: #516cf0;
   text-decoration: none;
   margin-left: 5px;
 }
@@ -163,10 +163,10 @@ form input {
 }
 
 .about-column {
-  background-color: #f8f9fa;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background-color: transparent !important; /* Changed from #f8f9fa to transparent */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 /* Responsive styles */
@@ -175,11 +175,11 @@ form input {
     flex: 0 0 100%;
     max-width: 100%;
   }
-  
+
   .auth-container {
     max-width: 90%;
   }
-  
+
   .about-column {
     order: -1;
     padding: 30px 0;
@@ -220,7 +220,7 @@ form input {
 }
 /* Add to Login.css */
 .create {
-  color: #FE8402 !important; /* Change from #516CF0 to #FE8402 */
+  color: #fe8402 !important; /* Change from #516CF0 to #FE8402 */
   text-decoration: none;
   margin-left: 5px;
   transition: color 0.3s ease;
@@ -233,7 +233,7 @@ form input {
 
 /* For the privacy policy and terms links in Register.jsx */
 p a.create {
-  color: #FE8402 !important;
+  color: #fe8402 !important;
 }
 
 p a.create:hover {
