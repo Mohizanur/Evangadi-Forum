@@ -1,23 +1,18 @@
-/* In About.css, update these styles */
 .about-section {
   display: flex;
   justify-content: center;
-  align-items: center;
-  height: 100%;
-  padding: 40px;
-  background-color: transparent; /* Changed from #f8f9fa to transparent */
-  border: none; /* Explicitly remove any border */
+  align-items: flex-start;
+  padding: 20px;
+  background-color: transparent;
 }
-
 .about-section.embedded {
   background-color: transparent;
   padding: 20px;
 }
 
 .about-content {
-  max-width: 500px;
+  max-width: 100%;
   text-align: left;
-  background-color: transparent; /* Ensure content background is also transparent */
 }
 
 .about-title {
@@ -29,16 +24,16 @@
 
 .about-brand {
   font-size: 24px;
-  color: #516CF0;
+  color: white; /* Changed to white for better visibility on background */
   font-weight: bold;
   margin-bottom: 15px;
 }
-
 .about-text {
   font-size: 14px;
-  color: #555;
+  color: white; /* Changed to white for better visibility on background */
   line-height: 1.6;
   margin-bottom: 15px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Add shadow for better readability */
 }
 
 .about-btn {

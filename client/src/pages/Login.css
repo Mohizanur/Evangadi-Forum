@@ -240,3 +240,43 @@ p a.create:hover {
   color: #e67300 !important;
   text-decoration: underline;
 }
+
+
+
+
+.auth-layout {
+  display: flex;
+  width: 100%;
+  max-width: 1200px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+}
+
+.auth-form-container {
+  flex: 0 0 50%;
+  max-width: 500px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.about-section-container {
+  flex: 0 0 45%;
+  max-width: 500px;
+}
+
+/* Update responsive styles */
+@media (max-width: 768px) {
+  .auth-layout {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+  
+  .auth-form-container,
+  .about-section-container {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
