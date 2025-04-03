@@ -248,25 +248,28 @@ p a.create:hover {
 .auth-layout {
   display: flex;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px; /* Reduced from 1200px */
   justify-content: space-between;
   align-items: center;
-  gap: 15px; /* Reduced from 30px to 15px */
+  gap: 5px; /* Significantly reduced from 30px to 5px */
 }
 
 .auth-form-container {
-  flex: 0 0 48%; /* Slightly reduced from 50% */
-  max-width: 500px;
-  background-color: rgba(255, 255, 255, 0.95); /* Increased opacity */
+  flex: 0 0 45%; /* Reduced from 50% */
+  max-width: 450px;
+  background-color: rgba(255, 255, 255, 0.95);
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .about-section-container {
-  flex: 0 0 48%; /* Slightly increased from 45% */
-  max-width: 500px;
+  flex: 0 0 45%; /* Reduced from 48% */
+  max-width: 450px;
+  margin-left: 0; /* Remove any margin */
+  padding-left: 0; /* Remove any padding */
 }
+
 
 
 /* Update responsive styles */
