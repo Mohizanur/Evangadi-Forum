@@ -35,7 +35,11 @@ function Header() {
           </span>
         </button>
 
-        <div className="collapse navbar-collapse" id="navbarNav">
+        {/* Use 'd-none d-lg-flex' to display the nav items on larger screens */}
+        <div
+          className="collapse navbar-collapse d-none d-lg-flex"
+          id="navbarNav"
+        >
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link to="/" className="nav-link black link">

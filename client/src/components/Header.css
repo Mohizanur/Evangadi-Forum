@@ -45,12 +45,24 @@
   padding: 10px 0;
 }
 
+/* Show nav items as a flex container on large screens */
+@media (min-width: 992px) {
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-nav .nav-link {
+    margin-right: 30px;
+  }
+}
+
 @media (max-width: 991px) {
   .navbar-collapse {
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   }
-  
+
   .btn {
     margin-top: 10px;
   }
