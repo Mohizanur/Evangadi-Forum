@@ -35,10 +35,11 @@
 }
 
 .navbar-nav {
-  display: flex; /* This ensures the items are in a row */
-  justify-content: flex-end; /* Aligns items to the right */
-  align-items: center; /* Vertically center the items */
-  margin-left: auto; /* To ensure the links are on the right side */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-left: auto;
+  flex-wrap: nowrap; /* Ensure items don't wrap */
 }
 
 .navbar-nav .nav-link {
@@ -52,6 +53,7 @@
   padding: 10px 0;
 }
 
+/* Small screen adjustments */
 @media (max-width: 991px) {
   .navbar-collapse {
     padding: 20px;
@@ -64,22 +66,24 @@
 
   /* Stack items vertically on smaller screens */
   .navbar-nav {
-    flex-direction: column; /* Stacks the items */
-    align-items: center; /* Centers items vertically */
+    flex-direction: column;
+    align-items: center;
   }
 
   .navbar-nav .nav-link {
     margin-right: 0;
-    margin-bottom: 10px; /* Space between items */
+    margin-bottom: 10px;
   }
 }
 
+/* Large screen adjustments */
 @media (min-width: 992px) {
   /* Ensure navbar items stay in one row on large screens */
   .navbar-nav {
-    display: flex; /* Ensures the items are in a row */
-    justify-content: flex-end; /* Aligns items to the right */
-    align-items: center; /* Ensures vertical centering */
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: nowrap; /* Ensure items don't wrap */
   }
 
   .navbar-nav .nav-link {
