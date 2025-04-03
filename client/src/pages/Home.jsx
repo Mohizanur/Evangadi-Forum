@@ -3,6 +3,14 @@ import { Link, useNavigate } from "react-router-dom";
 import { AppState } from "../App";
 import axios from "../axiosConfig";
 import "./Home.css";
+import {
+  FaUser,
+  FaArrowRight,
+  FaSearch,
+  FaSpinner,
+  FaPlus,
+  FaCalendarAlt,
+} from "react-icons/fa";
 
 function Home() {
   const { user } = useContext(AppState);
@@ -99,12 +107,25 @@ function Home() {
     indexOfFirstQuestion,
     indexOfLastQuestion
   );
+
   const totalPages = Math.ceil(filteredQuestions.length / questionsPerPage);
+
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   function handleAskQuestion() {
     setShowAskQuestion(true);
   }
+
+  // Format date function
+  const formatDate = (dateString) => {
+    if (!dateString) return "Date unavailable";
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  };
 
   return (
     <div className="container">
@@ -116,7 +137,7 @@ function Home() {
               className="qb"
               disabled={isSubmitting}
             >
-              Ask Question
+              <FaPlus className="button-icon" /> Ask Question
             </button>
           </div>
           <div className="col-md-6 d-flex justify-content-center justify-content-md-end">
@@ -124,19 +145,19 @@ function Home() {
           </div>
         </div>
         <h3 className="ns">Questions</h3>
-
         <div className="search-container">
-          <input
-            type="text"
-            placeholder="Search questions..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            className="search-input"
-          />
+          <div className="search-wrapper">
+            <FaSearch className="search-icon" />
+            <input
+              type="text"
+              placeholder="Search questions..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="search-input"
+            />
+          </div>
         </div>
-
         {message && <div className="message">{message}</div>}
-
         {showAskQuestion && (
           <div className="ask-question-form">
             <h3>Ask a Question</h3>
@@ -183,10 +204,11 @@ function Home() {
           </div>
         )}
       </div>
-
       <div className="load">
         {loading ? (
-          <div className="loading">Loading...</div>
+          <div className="loading">
+            <FaSpinner className="spinner-icon" /> Loading...
+          </div>
         ) : (
           currentQuestions.map((question) => (
             <div key={question.questionid} className="question-item">
@@ -194,27 +216,59 @@ function Home() {
                 to={`/answer/${question.questionid}`}
                 className="question-link"
               >
-                <h3>{question.title}</h3>
-                <p className="question-description">{question.description}</p>
-                <div className="question-meta">
-                  <span>Asked by: {question.username}</span>
+                <div className="question-content">
+                  <div className="question-user">
+                    <div className="user-avatar">
+                      <FaUser />
+                    </div>
+                    <div className="user-name">{question.username}</div>
+                  </div>
+
+                  <div className="question-body">
+                    <h3>{question.title}</h3>
+                    <p className="question-description">
+                      {question.description.length > 150
+                        ? `${question.description.substring(0, 150)}...`
+                        : question.description}
+                    </p>
+                    <div className="question-meta">
+                      <span className="question-date">
+                        <FaCalendarAlt className="date-icon" />{" "}
+                        {formatDate(question.created_at)}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="question-arrow">
+                    <FaArrowRight />
+                  </div>
                 </div>
               </Link>
             </div>
           ))
         )}
 
-        <div className="pagination">
-          {Array.from({ length: totalPages }, (_, i) => (
-            <button
-              key={i + 1}
-              onClick={() => paginate(i + 1)}
-              className={`page-button ${currentPage === i + 1 ? "active" : ""}`}
-            >
-              {i + 1}
-            </button>
-          ))}
-        </div>
+        {!loading && currentQuestions.length === 0 && (
+          <div className="no-questions">
+            <p>No questions found. Try a different search or ask a question!</p>
+          </div>
+        )}
+
+        {totalPages > 1 && (
+          <div className="pagination">
+            {Array.from({ length: totalPages }, (_, i) => (
+              <button
+                key={i + 1}
+                onClick={() => paginate(i + 1)}
+                className={`page-button ${
+                  currentPage === i + 1 ? "active" : ""
+                }`}
+              >
+                {i + 1}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );
