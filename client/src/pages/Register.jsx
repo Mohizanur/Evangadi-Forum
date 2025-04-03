@@ -4,7 +4,7 @@ import axiosBase from "../axiosConfig";
 import { validateRegister } from "../utils/validation";
 import Spinner from "../components/Spinner";
 import About from "./About";
-import backgroundImage from "../images/background.svg";
+import backgroundImage from "../Images/background.svg";
 import "./Register.css";
 
 function Register() {
