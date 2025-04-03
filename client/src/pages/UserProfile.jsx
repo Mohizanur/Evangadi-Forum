@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import { AppState } from "../App";
 import axios from "../axiosConfig";
 import "./UserProfile.css";
+import { FaUser, FaEnvelope, FaQuestion, FaSpinner } from "react-icons/fa";
 
 function UserProfile() {
   const { user } = useContext(AppState);
@@ -31,20 +32,34 @@ function UserProfile() {
   return (
     <div className="profile-container">
       <div className="profile-header">
-        <h2>Profile</h2>
+        <h2>User Profile</h2>
         <div className="user-info">
           <p>
-            <strong>Username:</strong> {user.username}
+            <strong>
+              <FaUser style={{ marginRight: "8px" }} /> Username:
+            </strong>{" "}
+            {user.username}
           </p>
           <p>
-            <strong>Email:</strong> {user.email || "Email not available"}
+            <strong>
+              <FaEnvelope style={{ marginRight: "8px" }} /> Email:
+            </strong>{" "}
+            {user.email || "Email not available"}
           </p>
         </div>
       </div>
 
       <div className="user-questions">
-        <h3>Your Questions</h3>
-        {userQuestions.length > 0 ? (
+        <h3>
+          <FaQuestion style={{ marginRight: "8px" }} /> Your Questions
+        </h3>
+
+        {isLoading ? (
+          <div className="loading">
+            <FaSpinner style={{ animation: "spin 1s linear infinite" }} />{" "}
+            Loading your questions...
+          </div>
+        ) : userQuestions.length > 0 ? (
           userQuestions.map((question) => (
             <div
               key={question.question_id || question.id}
@@ -61,7 +76,7 @@ function UserProfile() {
             </div>
           ))
         ) : (
-          <p>No questions found.</p>
+          <p>You haven't asked any questions yet.</p>
         )}
       </div>
     </div>
