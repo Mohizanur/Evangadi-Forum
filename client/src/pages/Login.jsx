@@ -74,7 +74,10 @@ function Login() {
   return (
     <div
       className="auth-page"
-      style={{ backgroundImage: `url(${backgroundImage})` }}
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundAttachment: "fixed",
+      }}
     >
       <div className="auth-container">
         <div className="row">

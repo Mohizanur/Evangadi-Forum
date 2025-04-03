@@ -185,3 +185,36 @@ form input {
     padding: 30px 0;
   }
 }
+/* Added this to Login.css to over ride main content padding*/
+.auth-page {
+  margin: -2rem; /* Counteract the main-content padding */
+  min-height: calc(100vh - 0px); /* Adjust based on your header/footer height */
+}
+/* Added this to override */
+.auth-container {
+  width: 100% !important;
+  max-width: 1200px !important;
+}
+
+.row {
+  display: flex !important;
+  flex-wrap: wrap !important;
+}
+
+.col-md-6 {
+  flex: 0 0 50% !important;
+  max-width: 50% !important;
+}
+/* Add this to Login.css */
+.auth-page {
+  margin: 0; /* Remove the negative margin */
+  padding-top: 90px; /* Add padding to account for fixed header (70px height + some extra) */
+  padding-bottom: 20px; /* Add some padding at the bottom */
+  min-height: calc(100vh - 0px); /* This will be adjusted */
+}
+
+/* Make sure the auth container doesn't get hidden behind the header */
+.auth-container {
+  position: relative;
+  z-index: 1; /* Lower than the header's z-index of 1000 */
+}

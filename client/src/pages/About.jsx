@@ -6,7 +6,10 @@ function About({ isEmbedded }) {
   const navigate = useNavigate();
 
   return (
-    <div className={`about-section ${isEmbedded ? "embedded" : ""}`}>
+    <div
+      className={`about-section ${isEmbedded ? "embedded" : ""}`}
+      style={{ border: "2px solid red" }}
+    >
       <div className="about-content">
         <h3 className="about-title">About</h3>
         <h2 className="about-brand">Evangadi Networks</h2>
