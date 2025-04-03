@@ -22,7 +22,7 @@ function Header() {
         </Link>
 
         <button
-          className="navbar-toggler"
+          className="navbar-toggler d-lg-none"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -43,8 +43,8 @@ function Header() {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/about" className="nav-link black link">
-                About
+              <Link to="/howitworks" className="nav-link black link">
+                How it works
               </Link>
             </li>
           </ul>

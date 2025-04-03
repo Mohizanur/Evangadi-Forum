@@ -34,7 +34,7 @@ function Footer() {
           <h5 className="title">Useful Links</h5>
           <ul className="st">
             <li>
-              <Link to="/how-it-works">How it Works</Link>
+              <Link to="/howitworks">How it Works</Link>
             </li>
             <li>
               <Link to="https://www.evangadi.com/legal/terms/" target="_blank">

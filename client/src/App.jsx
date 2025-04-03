@@ -11,6 +11,7 @@ import Question from "./pages/Question";
 import Answer from "./pages/Answer";
 import About from "./pages/About";
 import UserProfile from "./pages/UserProfile";
+import HowItWorks from "./pages/HowItWorks";
 
 export const AppState = createContext();
 
@@ -66,6 +67,7 @@ function App() {
               element={token ? <UserProfile /> : <Login />}
             />
             <Route path="/about" element={<About />} />
+            <Route path="/howitworks" element={<HowItWorks />} />
           </Routes>
         </main>
         <Footer />

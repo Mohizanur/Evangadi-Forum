@@ -1,66 +1,29 @@
 import React from "react";
+import { useNavigate } from "react-router-dom"; // ✅ Import useNavigate
 import "./About.css";
-import {
-  FaUserPlus,
-  FaSignInAlt,
-  FaQuestion,
-  FaReply,
-  FaEye,
-} from "react-icons/fa";
 
 function About() {
+  const navigate = useNavigate(); // ✅ Initialize navigate function
+
   return (
-    <div className="how-it-works">
-      <h2>How it Works</h2>
-      <div className="how-it-works-content">
-        <div className="how-it-works-step">
-          <FaUserPlus className="step-icon" />
-          <h3>1. Register</h3>
-          <p>
-            Create an account by providing your first and last name, username,
-            email address, and password. Ensure your username and email are
-            unique.
-          </p>
-        </div>
-
-        <div className="how-it-works-step">
-          <FaSignInAlt className="step-icon" />
-          <h3>2. Sign In</h3>
-          <p>
-            Already a member? Log in using your email and password to access
-            your account.
-          </p>
-        </div>
-
-        <div className="how-it-works-step">
-          <FaQuestion className="step-icon" />
-          <h3>3. Post Questions</h3>
-          <p>
-            After logging in, navigate to the Questions Page to post your
-            programming-related inquiries. Make sure to include a clear title
-            and a detailed explanation to get the best help.
-          </p>
-        </div>
-
-        <div className="how-it-works-step">
-          <FaReply className="step-icon" />
-          <h3>4. Provide Answers</h3>
-          <p>
-            Browse through questions posted by other users and share your
-            expertise by answering them. Your username will be displayed with
-            each answer.
-          </p>
-        </div>
-
-        <div className="how-it-works-step">
-          <FaEye className="step-icon" />
-          <h3>5. Explore and Evaluate</h3>
-          <p>
-            Discover and review various questions and answers to gain knowledge
-            and assist others. Engaging with the community helps everyone learn
-            and grow.
-          </p>
-        </div>
+    <div className="about-section">
+      <div className="about-content">
+        <h3 className="about-title">About</h3>
+        <h2 className="about-brand">Evangadi Networks</h2>
+        <p className="about-text">
+          No matter what stage of life you are in, whether you’re just starting
+          elementary school or being promoted to CEO of a Fortune 500 company,
+          you have much to offer to those who are trying to follow in your
+          footsteps.
+        </p>
+        <p className="about-text">
+          Whether you are willing to share your knowledge or you are just
+          looking to meet mentors of your own, please start by joining the
+          network here.
+        </p>
+        <button className="about-btn" onClick={() => navigate("/howitworks")}>
+          HOW IT WORKS
+        </button>
       </div>
     </div>
   );
