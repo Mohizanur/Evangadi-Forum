@@ -7,7 +7,6 @@ import logo from "../Images/evangadi-logo-header.png";
 function Header() {
   const { user, setuser } = useContext(AppState);
   const navigate = useNavigate();
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     setuser({});
@@ -15,14 +14,13 @@ function Header() {
   };
 
   return (
-    <nav className="navbar expand-lg fixed-top">
+    <nav className="navbar navbar-expand-lg fixed-top">
       <div className="container">
         <Link to="/" className="navbar-brand">
           <img src={logo} alt="Evangadi Logo" className="navbar-logo" />
         </Link>
-
         <button
-          className="navbar-toggler d-lg-none"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -37,7 +35,6 @@ function Header() {
             ></i>
           </span>
         </button>
-
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
@@ -50,27 +47,30 @@ function Header() {
                 How it works
               </Link>
             </li>
-          </ul>
-
-          <div className="m-0 m-md-3">
             {user?.username ? (
               <>
-                <Link to="/profile" className="nav-link black link me-3">
-                  Profile
-                </Link>
-                <button className="btn btn-success" onClick={handleLogout}>
-                  Log Out
-                </button>
+                <li className="nav-item">
+                  <Link to="/profile" className="nav-link black link">
+                    Profile
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <button className="btn btn-success" onClick={handleLogout}>
+                    Log Out
+                  </button>
+                </li>
               </>
             ) : (
-              <button
-                className="btn btn-success"
-                onClick={() => navigate("/login")}
-              >
-                Sign In
-              </button>
+              <li className="nav-item">
+                <button
+                  className="btn btn-success"
+                  onClick={() => navigate("/login")}
+                >
+                  Sign In
+                </button>
+              </li>
             )}
-          </div>
+          </ul>
         </div>
       </div>
     </nav>
