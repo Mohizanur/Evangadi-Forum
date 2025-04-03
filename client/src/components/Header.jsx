@@ -21,7 +21,6 @@ function Header() {
           <img src={logo} alt="Evangadi Logo" className="navbar-logo" />
         </Link>
 
-        {/* Toggle button for small screens */}
         <button
           className="navbar-toggler d-lg-none"
           type="button"
@@ -39,7 +38,6 @@ function Header() {
           </span>
         </button>
 
-        {/* Collapsible nav items */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">

@@ -35,15 +35,16 @@
 }
 
 .navbar-nav {
-  display: flex; 
-  justify-content: space-between;  /* Distribute items across the navbar */
-  align-items: center; /* Align items vertically */
+  display: flex; /* This ensures the items are in a row */
+  justify-content: flex-end; /* Aligns items to the right */
+  align-items: center; /* Vertically center the items */
+  margin-left: auto; /* To ensure the links are on the right side */
 }
 
 .navbar-nav .nav-link {
   color: #333;
   font-weight: 500;
-  margin-right: 20px; /* Add space between the nav items */
+  margin-right: 20px; /* Spacing between navbar items */
 }
 
 .navbar-collapse {
@@ -51,7 +52,6 @@
   padding: 10px 0;
 }
 
-/* Ensuring the toggle button works for smaller screens */
 @media (max-width: 991px) {
   .navbar-collapse {
     padding: 20px;
@@ -62,26 +62,27 @@
     margin-top: 10px;
   }
 
-  /* Ensure the navbar items are centered on small screens */
+  /* Stack items vertically on smaller screens */
   .navbar-nav {
-    flex-direction: column; /* Stack items vertically on small screens */
-    align-items: center;
+    flex-direction: column; /* Stacks the items */
+    align-items: center; /* Centers items vertically */
   }
 
   .navbar-nav .nav-link {
     margin-right: 0;
-    margin-bottom: 10px; /* Add margin between items when stacked */
+    margin-bottom: 10px; /* Space between items */
   }
 }
 
 @media (min-width: 992px) {
+  /* Ensure navbar items stay in one row on large screens */
   .navbar-nav {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
+    display: flex; /* Ensures the items are in a row */
+    justify-content: flex-end; /* Aligns items to the right */
+    align-items: center; /* Ensures vertical centering */
   }
 
   .navbar-nav .nav-link {
-    margin-right: 30px;
+    margin-right: 30px; /* Adequate spacing between items */
   }
 }
