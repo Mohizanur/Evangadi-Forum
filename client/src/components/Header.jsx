@@ -21,11 +21,15 @@ function Header() {
           <img src={logo} alt="Evangadi Logo" className="navbar-logo" />
         </Link>
 
+        {/* Toggle button for small screens */}
         <button
           className="navbar-toggler d-lg-none"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span>
             <i
@@ -35,11 +39,8 @@ function Header() {
           </span>
         </button>
 
-        {/* Use 'd-none d-lg-flex' to display the nav items on larger screens */}
-        <div
-          className="collapse navbar-collapse d-none d-lg-flex"
-          id="navbarNav"
-        >
+        {/* Collapsible nav items */}
+        <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link to="/" className="nav-link black link">

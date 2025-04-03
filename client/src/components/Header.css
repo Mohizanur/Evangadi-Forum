@@ -34,10 +34,16 @@
   border: none;
 }
 
+.navbar-nav {
+  display: flex; 
+  justify-content: space-between;  /* Distribute items across the navbar */
+  align-items: center; /* Align items vertically */
+}
+
 .navbar-nav .nav-link {
   color: #333;
   font-weight: 500;
-  margin-right: 20px;
+  margin-right: 20px; /* Add space between the nav items */
 }
 
 .navbar-collapse {
@@ -45,18 +51,7 @@
   padding: 10px 0;
 }
 
-/* Show nav items as a flex container on large screens */
-@media (min-width: 992px) {
-  .navbar-nav {
-    display: flex;
-    align-items: center;
-  }
-
-  .navbar-nav .nav-link {
-    margin-right: 30px;
-  }
-}
-
+/* Ensuring the toggle button works for smaller screens */
 @media (max-width: 991px) {
   .navbar-collapse {
     padding: 20px;
@@ -65,5 +60,28 @@
 
   .btn {
     margin-top: 10px;
+  }
+
+  /* Ensure the navbar items are centered on small screens */
+  .navbar-nav {
+    flex-direction: column; /* Stack items vertically on small screens */
+    align-items: center;
+  }
+
+  .navbar-nav .nav-link {
+    margin-right: 0;
+    margin-bottom: 10px; /* Add margin between items when stacked */
+  }
+}
+
+@media (min-width: 992px) {
+  .navbar-nav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .navbar-nav .nav-link {
+    margin-right: 30px;
   }
 }
