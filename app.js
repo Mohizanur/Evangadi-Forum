@@ -12,12 +12,13 @@ const answerRoutes = require("./routes/answerRoute");
 // Middleware
 app.use(
   cors({
-    origin: "https://evangadi-forum-monasir.netlify.app",
+    origin: ["https://evangadi-forum-monasir.netlify.app", "http://13.219.100.165"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
+
 app.use(express.json());
 
 // Routes with /api prefix
